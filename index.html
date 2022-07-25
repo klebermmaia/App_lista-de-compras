@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="---AQUI A DESCRIÇÃO DO SITE---">
+  <link rel="shortcut icon" href="assets/media/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="assets/css/1-normalize.css">
+  <link rel="stylesheet" href="assets/css/2-reset.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <title>Lista de compras</title>
+</head>
+
+<body>
+  <section class="container">
+    <div class="form-bg" id="id-form">
+      <form class="grid-form">
+        <div class="entrada-valores">
+          <label for="item">Item:</label>
+          <input type="text" name="item" id="item" placeholder="ex.: Arroz" value="Biscoito maizena">
+        </div>
+        <div class="entrada-valores">
+          <label for="quantidade">Quantidade:</label>
+          <input type="number" name="quantidade" id="quantidade" value="1">
+        </div>
+        <div class="entrada-valores">
+          <label for="valor">Valor:</label>
+          <input type="number" name="valor" id="valor" value="1">
+        </div>
+      </form>
+      <div class="btn-group">
+        <input id="btn-add" class="btn" type="button" value="Inserir" onclick="produto.add()">
+        <input id="btn-editar" class="btn" type="button" value="Deletar" onclick="produto.editar()">
+      </div>
+    </div>
+    <!-- /////// -->
+    <div class="lista-itens">
+      <table class="tabela">
+        <thead>
+          <th colspan="">item (Quantidade)</th>
+          <th>valor</th>
+          <th>total item</th>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
+        <tfoot id="tfooter"></tfoot>
+      </table>
+    </div>
+  </section>
+  <script src="assets/js/script.js"></script>
+  <!-- <script src="assets/js/script2.js"></script> -->
+</body>
+
+</html>
