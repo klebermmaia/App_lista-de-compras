@@ -1,2 +1,2 @@
 # Lista-de-compras
-Projeto feitocom intuito de uso pessoal
+Projeto foi criado com o intuido de uso pessoal, para agilizar minhas compras. 
