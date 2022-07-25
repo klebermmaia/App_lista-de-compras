@@ -1,2 +1,2 @@
 # Lista-de-compras
-Projeto feoi com intuito de uso pessoal
+Projeto feitocom intuito de uso pessoal
