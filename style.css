@@ -1,0 +1,231 @@
+@import url(assets/css/1-normalize.css);
+@import url(assets/css/2-reset.css);
+/* TIPOGRAFIA */
+@import url(assets/css/fonts.css);
+/* PALETA  */
+:root{
+  --bg: #1d4644;
+  --head: #191919;
+  --bg-total: #e6ffd2;
+  --deco-total: #76c669;
+  --btn-add: #6DB04D;
+}
+body{
+  background-color: var(--bg);
+  min-height: 100vh;
+}
+@media (max-width: 460px) {
+  .bg-group-inputs{
+    background-color: var(--head);
+    box-shadow: 2px 6px 12px #00000080;
+  }
+  .group-inputs{
+    position: relative;
+    max-width: 350px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    height: 80px;
+  }
+  .div-input{
+    display: flex;
+    place-content: center;
+    place-items: center;
+  }
+  .div-input:first-child label{
+    margin-right: 5px;
+  }
+  .div-input:not(:first-child) label{
+    margin: 0 5px;
+  }
+  #item{
+    max-width: 150px;
+    padding-left: 5px;
+  }
+  #quantidade{
+    max-width: 25px;
+    text-align: center;
+  }
+  #valor{
+    max-width: 50px;
+    text-align: center;
+  }
+  .btn-add{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: -30px;
+    right: 0;
+    height: 36px;
+    width: 48px;
+    border: none;
+    border-radius: 0 0 50px 50px;
+    background-color: var(--head);
+    box-shadow: 2px 6px 8px #00000060;
+  }
+  .btn-add::after{
+    content: '';
+    display: flex;
+    width: 20px;
+    height: 3px;
+    border-radius: 3px;
+    position: absolute;
+    background-color: var(--btn-add);
+  }
+  .btn-add::before{
+    content: '';
+    display: flex;
+    width: 20px;
+    height: 3px;
+    border-radius: 3px;
+    position: absolute;
+    transform: rotate(90deg);
+    background-color: var(--btn-add);
+  }
+    .btn-add.btn-travado::after,
+    .btn-add.btn-travado::before{
+      background-color: red;
+    }
+  table{
+    border-collapse: collapse;
+  }
+  th, td{
+    border-bottom: 1px solid #000000b3;
+    padding: 6px;
+  }
+  th:nth-child(2),
+  .linha-item td:nth-child(2){
+    border-left: 1px solid #00000080;
+    border-right: 1px solid #00000080;
+  }
+  tr:last-child td{
+    border-bottom: none;
+  }
+  thead tr th:first-child{
+    min-width: 130px;
+  }
+  .tabela{
+    position: relative;
+    width: 360px;
+    margin: 0 auto;
+    margin-top: 50px;
+    background-color: #ffffff;
+    border-radius: 10px 10px 0px 10px;
+    padding: 5px;
+  }
+  .linha-item td div {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+  .linha-item td div span span{
+    font-size: .6rem;
+  }
+  .linha-item td:not(:first-child){
+    text-align: center;
+  }
+  .total{
+    position: absolute;
+    width: 180px;
+    right: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-total);
+    border-radius: 0 0 20px 20px;
+    border-top: 2px solid var(--deco-total);
+  }
+  .lista-itens{
+    position: relative;
+  }
+  .delete{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 2px;
+    top: 22px;
+    width: 32px;
+    height: 36px;
+    border: none;
+    border-radius: 0 50px 50px 0;
+    background-color: #ffffff;
+  }
+  .delete::before,
+  .delete::after{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    z-index: -1;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+  .delete::before{
+    top: -20px;
+    left: 0px;
+    border-top-left-radius: 30%;
+    border-bottom-right-radius: 30%;
+    border-bottom-left-radius: 60%;
+    box-shadow: -4px 4px 0 0px #ffffff;
+  }
+  .delete::after{
+    bottom: -20px;
+    left: 0;
+    border-top-left-radius: 60%;
+    border-top-right-radius: 30%;
+    border-bottom-left-radius: 30%;
+    box-shadow: -4px -4px 0 0px #ffffff;
+  }
+  .delete img{
+    position: relative;
+    right: 3px;
+    width: 24px;
+    height: auto;
+  }
+  .del-row,
+  .cell_del{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cell_del,
+  .del-row{
+    border-left: 1px solid #00000080;
+  }
+  .img-delete,
+  .cell_del img{
+    width: 24px;
+    height: auto;
+  }
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  input{
+    height: 27px;
+    border: none;
+    border-radius: 3px;
+  }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}
+    .oculta{
+      display: none;
+    }

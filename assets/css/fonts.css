@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap');
+.font-label{
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: auto;
+  text-align: left;
+  color: #ffffff;
+}
+.font-placeholder{
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-size: .9rem;
+  font-weight: 400;
+  line-height: auto;
+  text-align: left;
+  color: #00000080;
+}
+.font-t-tabela{
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: auto;
+  text-align: center;
+  color: #000000;
+  text-transform: capitalize;
+}
+.font-itens{
+  font-family: 'Nunito', Arial, Helvetica, sans-serif;
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: auto;
+  text-align: left;
+  color: #000000;
+  text-transform: capitalize;
+}

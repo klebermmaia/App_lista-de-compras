@@ -7,50 +7,84 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="---AQUI A DESCRIÇÃO DO SITE---">
   <link rel="shortcut icon" href="assets/media/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="assets/css/1-normalize.css">
-  <link rel="stylesheet" href="assets/css/2-reset.css">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <title>Lista de compras</title>
+  <link rel="stylesheet" href="style.css">
+  <title>Minhas Compras</title>
 </head>
 
 <body>
-  <section class="container">
-    <div class="form-bg" id="id-form">
-      <form class="grid-form">
-        <div class="entrada-valores">
-          <label for="item">Item:</label>
-          <input type="text" name="item" id="item" placeholder="ex.: Arroz" value="Biscoito maizena">
-        </div>
-        <div class="entrada-valores">
-          <label for="quantidade">Quantidade:</label>
-          <input type="number" name="quantidade" id="quantidade" value="1">
-        </div>
-        <div class="entrada-valores">
-          <label for="valor">Valor:</label>
-          <input type="number" name="valor" id="valor" value="1">
-        </div>
-      </form>
-      <div class="btn-group">
-        <input id="btn-add" class="btn" type="button" value="Inserir" onclick="produto.add()">
-        <input id="btn-editar" class="btn" type="button" value="Deletar" onclick="produto.editar()">
+  <section>
+    <div class="bg-group-inputs">
+      <div class="group-inputs">
+          <div class="div-input">
+            <label for="item" class="font-label">Nome:</label>
+            <input type="text" name="item" class="font-placeholder" id="item" placeholder="Nome do produto">
+          </div>
+          <div class="div-input">
+            <label for="quantidade" class="font-label">X</label>
+            <input type="number" name="quantidade" class="font-placeholder" id="quantidade">
+          </div>
+          <div class="div-input">
+            <label for="valor" class="font-label">R$</label>
+            <input type="number" name="valor" class="font-placeholder" id="valor">
+          </div>
+          <button id="btn-add" class="btn btn-add" onclick="produto.add()">
+          </button>
       </div>
     </div>
     <!-- /////// -->
     <div class="lista-itens">
+      <div class="editar">
+          <button id="btn-delete" class="delete oculta" onclick="produto.editar()">
+            <img src="assets/media/delete_forever.svg" alt="">
+          </button>
+      </div>
       <table class="tabela">
         <thead>
-          <th colspan="">item (Quantidade)</th>
-          <th>valor</th>
-          <th>total item</th>
+          <tr class="font-t-tabela">
+            <th>item</th>
+            <th>valor</th>
+            <th>V. Parcial</th>
+            <th class="cell_del oculta">
+              <img src="assets/media/delete_forever.svg" alt="">
+            </th>
+          </tr>
         </thead>
-        <tbody id="tbody">
+        <tbody id="tbody" class="font-itens">
+          <!-- <tr class="linha-item">
+            <td class="cell_nome_item">
+              <div>
+                <p id="nome_0" class="font-itens">bolacha cream crack</p>
+                <span id="quantidade_0">
+                  <span>x</span>2
+                </span>
+              </div>
+            </td>
+            <td id="valor_0">R$ 999,99</td>
+            <td id="total_item_0">R$ 999,99</td>
+          </tr>
+          <tr class="linha-item">
+            <td class="cell_nome_item">
+              <div>
+                <p id="nome_0" class="font-itens">bolacha cream crack</p>
+                <span id="quantidade_0">
+                  <span>x</span>2
+                </span>
+              </div>
+            </td>
+            <td id="valor_0">R$ 999,99</td>
+            <td id="total_item_0">R$ 999,99</td>
+          </tr> -->
         </tbody>
-        <tfoot id="tfooter"></tfoot>
+        <tfoot id="tfooter">
+          <tr class="font-t-tabela total">
+            <td class="td-total">Total: <span>R$ 0</span></td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   </section>
-  <script src="assets/js/script.js"></script>
-  <!-- <script src="assets/js/script2.js"></script> -->
+  <!-- <script src="assets/js/script.js"></script> -->
+  <script src="assets/js/script2.js"></script>
 </body>
 
 </html>
