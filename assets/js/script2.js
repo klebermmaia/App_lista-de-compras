@@ -75,12 +75,13 @@ class Produtos {
     const tfooter = document.getElementById("tfooter");
     tfooter.innerHTML = "";
 
-    let footer = tfooter.insertRow();
-    footer.classList.add("total");
-    footer.classList.add('font-t-tabela')
-    let cell_total = footer.insertCell();
+    let lineTotal = tfooter.insertRow();
+    lineTotal.classList.add("total");
+    lineTotal.classList.add('font-t-tabela')
+
+    let cell_total = lineTotal.insertCell();
     cell_total.classList.add("td-total");
-    let cell_valor_total = footer.insertCell();
+    let cell_valor_total = lineTotal.insertCell();
     cell_valor_total.classList.add('valor-total');
     let arrayLength = 0
     if (this.arrItens.length === 0) {
@@ -163,7 +164,7 @@ class Produtos {
 
         let imgDelete = document.createElement("ion-icon");
         // imgDelete.src = "assets/media/delete_forever.svg";
-        imgDelete.setAttribute('name', 'remove-outline')
+        imgDelete.setAttribute('name', 'close-outline')
         imgDelete.classList.add("remove-iten");
         delete_cell.appendChild(imgDelete);
       });
@@ -240,3 +241,9 @@ window.addEventListener('keyup', (e) => e.key === 'Enter' ? produto.add() : '')
 window.addEventListener('load', ()=>{
   setTimeout(produto.loadLocalStorage(), 500)
 })
+const navgation = document.querySelector('.div-menu')
+const toggle = document.querySelector('.toggle-menu')
+
+toggle.onclick = () => {
+  navgation.classList.toggle('active')
+}

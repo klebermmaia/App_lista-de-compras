@@ -13,6 +13,10 @@
 body{
   background-color: var(--bg);
   min-height: 100vh;
+  padding-bottom: 108px;
+}
+.container{
+  position: relative;
 }
 @media (max-width: 460px) {
   .bg-group-inputs{
@@ -97,7 +101,7 @@ body{
   table{
     border-collapse: collapse;
     position: relative;
-    /* width: 360px; */
+    right: 16px;
     margin: 0 auto;
     background-color: #ffffff;
     border-radius: 10px 10px 0px 10px;
@@ -139,6 +143,30 @@ body{
     border-radius: 0 0 20px 20px;
     border-top: 2px solid var(--deco-total);
   }
+  .li-delete{
+    position: relative;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    padding: 15px;
+    font-size: .9rem;
+  }
+  .delete-lista{
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 50%;
+    border: none;
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .delete-lista td{
+    border: none;
+    padding: 0;
+  }
   .lista-itens{
     position: relative;
     display: flex;
@@ -149,24 +177,21 @@ body{
   #tbody{
     position: relative;
   }
-  .teste{
+  .line-del{
     position: absolute;
     top: 18px;
-    right: -38px;
+    right: -34px;
   }
   .delete{
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    width: 26px;
-    height: 30px;
+    width: 22px;
+    height: 26px;
     border: none;
     border-radius: 0 50px 50px 0;
     background-color: #ffffff;
-  }
-  .delete.editar-on{
-    
   }
   .delete::before,
   .delete::after{
@@ -198,12 +223,13 @@ body{
   .img-trash,
   .remove-iten{
     position: relative;
-    right: 3px;
+    /* right: 3px; */
     width: 20px;
     height: 20px;
   }
   .remove-iten{
     color: darkred;
+    width: 25px;
   }
   .del-row,
   .cell_del{
@@ -211,9 +237,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .cell_del,
-  .del-row{
+    padding: 6px 0;
     border-left: 1px solid #00000080;
   }
   .img-delete,
@@ -221,17 +245,74 @@ body{
     width: 24px;
     height: auto;
   }
-
-
-
-
-
-
-  
-  
-  
-  
-  
+  .toggle-menu{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--head);
+    position: fixed;
+    right: 14px;
+    bottom: 10px;
+    z-index: 999;
+    transition: all .3s;
+  }
+  .toggle-menu span{
+    display: block;
+    width: 22px;
+    height: 3px;
+    border-radius: 2px;
+    background-color: var(--bg-total);
+    transition: all .2s;
+  }
+  .toggle-menu span::before,
+  .toggle-menu span::after{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 22px;
+    height: 3px;
+    border-radius: 2px;
+    transition: all .3s ease-in-out;
+    background-color: var(--bg-total);
+  }
+  .toggle-menu span::before{
+    transform: translateY(-8px);
+  }
+  .toggle-menu span::after{
+    transform: translateY(8px);
+  }
+  .menu-nav{
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    height: 0px;
+    width: 100%;
+    background-color: var(--head);
+    color: white;
+    transition: all .3s;
+  }
+  .div-menu.active .toggle-menu{
+    background-color: var(--bg-total);
+    bottom: 20px;
+  }
+  .div-menu.active .toggle-menu span{
+    background-color: transparent;
+    z-index: -1;
+  }
+  .div-menu.active .toggle-menu span::before{
+    transform: translateY(0) rotate(-225deg);
+    background-color: var(--head);
+  }
+  .div-menu.active .toggle-menu span::after{
+    transform: translateY(0) rotate(225deg);
+    background-color: var(--head);
+  }
+  .div-menu.active .menu-nav{
+    height: 90px;
+  }
   input{
     height: 27px;
     border: none;
@@ -242,11 +323,56 @@ body{
     -webkit-appearance: none;
     margin: 0;
   }
-  
   input[type="number"] {
     -moz-appearance: textfield;
   }
+  .oculta{
+    display: none;
+  }
 }
-    .oculta{
-      display: none;
-    }
+
+@media (max-width: 320px) {
+  table{
+    right: 0;
+  }
+  .line-del{
+    top: -32px;
+    right: 40px;
+  }
+  .delete{
+    position: relative;
+    width: 26px;
+    height: 20px;
+    border: none;
+    border-radius: 50px 50px 0 0;
+    background-color: #ffffff;
+  }
+  .img-trash{
+    right: 0;
+  }
+  .delete::before,
+  .delete::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    z-index: -1;
+    /* border-radius: 50%; */
+    background-color: rgb(51, 255, 0,0);
+  }
+  .delete::before {
+    top: 2px;
+    left: -21px;
+    height: 33px;
+    border-bottom-right-radius: 1000%;
+    box-shadow: 8px 8px 0 #ffffff;
+  }
+  .delete::after {
+    top: 2px;
+    left: 32px;
+    height: 33px;
+    border-bottom-left-radius: 1000%;
+    box-shadow: -8px 8px 0 0px #ffffff;
+  }
+}

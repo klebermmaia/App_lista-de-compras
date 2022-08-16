@@ -7,12 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="---AQUI A DESCRIÇÃO DO SITE---">
   <link rel="shortcut icon" href="assets/media/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="style.css">
   <title>Minhas Compras</title>
 </head>
 
 <body>
-  <section>
+  <section class="container">
     <div class="bg-group-inputs">
       <form class="group-inputs">
           <div class="div-input">
@@ -32,10 +33,7 @@
         </form>
     </div>
     <!-- /////// -->
-    <button class="" onclick="produto.limparLista()">Limpar tudo</button>
     <div class="lista-itens">
-
-      
       <table>
         <thead>
           <tr class="font-t-tabela">
@@ -46,7 +44,7 @@
               <ion-icon class="img-trash"  name="trash-outline"></ion-icon>
             </th>
           </tr>
-          <tr class="teste">
+          <tr class="line-del">
             <td type="button" id="btn-delete" class="delete oculta" onclick="produto.editar()" aria->
               <ion-icon class="img-trash" name="trash-outline"></ion-icon>
             </td>
@@ -79,6 +77,9 @@
           </tr> -->
         </tbody>
         <tfoot id="tfooter">
+          <!-- <tr>
+            <td class="" onclick="produto.limparLista()">Limpar tudo</td>
+          </tr> -->
           <tr class="font-t-tabela total">
             <td>Total: </td>
             <td>R$ 0,00</td>
@@ -86,8 +87,23 @@
         </tfoot>
       </table>
     </div>
+    <div class="div-menu">
+      <div class="toggle-menu"><span></span></div>
+      <nav class="menu-nav">
+        <ul class="font-label">
+          <li class="li-delete">
+            <button class="delete-lista" onclick="produto.limparLista()">
+              <span class="material-symbols-outlined" onclick="produto.limparLista()">delete_forever</span>
+            </button>
+            <span>
+              Limpar Lista
+            </span>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </section>
-  
+
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <!-- <script src="assets/js/script.js"></script> -->

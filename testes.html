@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="---AQUI A DESCRIÇÃO DO SITE---">
+  <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+  <title>Titulo</title>
+</head>
+<body>
+<table>
+  <thead>
+    <tr class="font-t-tabela">
+      <th>item</th>
+      <th>quant</th>
+      <th>valor</th>
+      <th>V. Parcial</th>
+    </tr>
+    <tr class="line-del">
+      <td type="button" id="btn-delete" class="delete" onclick="produto.editar()" aria-="">
+        <ion-icon class="img-trash md hydrated" name="trash-outline" role="img" aria-label="trash outline"></ion-icon>
+      </td>
+    </tr>
+  </thead>
+  <tbody id="tbody" class="font-itens">
+    <tr id="0" class="linha-item">
+      <td class="cell_nome_item">fvg<td>x4</td></td>
+      <td>R$ 4.00</td>
+      <td>R$ 16.00</td>
+    </tr>
+    <tr id="1" class="linha-item">
+      <td class="cell_nome_item">ds<td>x3</td></td>
+      <td>R$ 3.00</td>
+      <td>R$ 9.00</td>
+    </tr>
+    <tr id="2" class="linha-item">
+      <td class="cell_nome_item">34<td>x4</td></td>
+      <td>R$ 4.00</td>
+      <td>R$ 16.00</td>
+    </tr>
+    <tr id="3" class="linha-item">
+      <td class="cell_nome_item">4<td>x4</td></td>
+      <td>R$ 4.00</td>
+      <td>R$ 16.00</td>
+    </tr>
+    <tr id="4" class="linha-item">
+      <td class="cell_nome_item">3<td>x33</td></td>
+      <td>R$ 9.00</td>
+      <td>R$ 297.00</td>
+    </tr>
+    <tr id="5" class="linha-item">
+      <td class="cell_nome_item">4<td>x4</td></td>
+      <td>R$ 4.00</td>
+      <td>R$ 16.00</td>
+    </tr>
+    <tr id="6" class="linha-item">
+      <td class="cell_nome_item">kleber maia4<td>x4</td></td>
+      <td>R$ 4.00</td>
+      <td>R$ 16.00</td>
+    </tr>
+    <tr id="7" class="linha-item">
+      <td class="cell_nome_item">4<td>x44</td></td>
+      <td>R$ 4.00</td>
+      <td>R$ 176.00</td>
+    </tr>
+    <tr id="8" class="linha-item">
+      <td class="cell_nome_item">kleber maia<td>x2</td></td>
+      <td>R$ 4.00</td>
+      <td>R$ 8.00</td>
+    </tr>
+    <tr id="9" class="linha-item">
+      <td class="cell_nome_item">kleber maia<td>x5</td></td>
+      <td>R$ 5.00</td>
+      <td>R$ 25.00</td>
+    </tr>
+    <tr id="10" class="linha-item">
+      <td class="cell_nome_item">55<td>x5</td></td>
+      <td>R$ 5.00</td>
+      <td>R$ 25.00</td>
+    </tr>
+    <tr id="11" class="linha-item">
+      <td class="cell_nome_item">5<td>x5</td></td>
+      <td>R$ 5.00</td>
+      <td>R$ 25.00</td>
+    </tr>
+    <tr id="12" class="linha-item">
+      <td class="cell_nome_item">656<td>x5</td></td>
+      <td>R$ 65.00</td>
+      <td>R$ 325.00</td>
+    </tr>
+    <tr id="13" class="linha-item">
+      <td class="cell_nome_item">454<td>x9</td></td>
+      <td>R$ 5.00</td>
+      <td>R$ 45.00</td>
+    </tr>
+    <tr id="14" class="linha-item">
+      <td class="cell_nome_item">ds<td>x3</td></td>
+      <td>R$ 3.00</td>
+      <td>R$ 9.00</td>
+    </tr>
+    <tr id="15" class="linha-item">
+      <td class="cell_nome_item">ee<td>x6</td></td>
+      <td>R$ 6.00</td>
+      <td>R$ 36.00</td>
+    </tr>
+    <tr id="16" class="linha-item">
+      <td class="cell_nome_item">6<td>x6</td></td>
+      <td>R$ 6.00</td>
+      <td>R$ 36.00</td>
+    </tr>
+  </tbody>
+</table>
+<button id="down-csv">CSV</button>
+<script >
+  const nodeItens = document.querySelectorAll('tbody tr')
+    const btnCsv = document.getElementById('down-csv')
+    btnCsv.addEventListener('click', () => {
+      const csvString = Array.from(nodeItens).map(row => Array.from(row.cells).map(cell => cell.textContent).join(',')).join('\n')
+      btnCsv.setAttribute('href', `data:text/csv;charset=utf-8,${encodeURIComponent(csvString)}`)
+      btnCsv.setAttribute('download', 'table.csv')
+      console.log(csvString)
+    })
+</script>
+</body>
+</html>
