@@ -14,7 +14,7 @@
 <body>
   <section>
     <div class="bg-group-inputs">
-      <div class="group-inputs">
+      <form class="group-inputs">
           <div class="div-input">
             <label for="item" class="font-label">Nome:</label>
             <input type="text" name="item" class="font-placeholder" id="item" placeholder="Nome do produto">
@@ -27,26 +27,29 @@
             <label for="valor" class="font-label">R$</label>
             <input type="number" name="valor" class="font-placeholder" id="valor">
           </div>
-          <button id="btn-add" class="btn btn-add" onclick="produto.add()">
+          <button type="button" id="btn-add" class="btn btn-add" onclick="produto.add()" aria->
           </button>
-      </div>
+        </form>
     </div>
     <!-- /////// -->
+    <button class="" onclick="produto.limparLista()">Limpar tudo</button>
     <div class="lista-itens">
-      <div class="editar">
-          <button id="btn-delete" class="delete oculta" onclick="produto.editar()">
-            <img src="assets/media/delete_forever.svg" alt="">
-          </button>
-      </div>
-      <table class="tabela">
+
+      
+      <table>
         <thead>
           <tr class="font-t-tabela">
             <th>item</th>
             <th>valor</th>
             <th>V. Parcial</th>
             <th class="cell_del oculta">
-              <img src="assets/media/delete_forever.svg" alt="">
+              <ion-icon class="img-trash"  name="trash-outline"></ion-icon>
             </th>
+          </tr>
+          <tr class="teste">
+            <td type="button" id="btn-delete" class="delete oculta" onclick="produto.editar()" aria->
+              <ion-icon class="img-trash" name="trash-outline"></ion-icon>
+            </td>
           </tr>
         </thead>
         <tbody id="tbody" class="font-itens">
@@ -77,12 +80,16 @@
         </tbody>
         <tfoot id="tfooter">
           <tr class="font-t-tabela total">
-            <td class="td-total">Total: <span>R$ 0</span></td>
+            <td>Total: </td>
+            <td>R$ 0,00</td>
           </tr>
         </tfoot>
       </table>
     </div>
   </section>
+  
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <!-- <script src="assets/js/script.js"></script> -->
   <script src="assets/js/script2.js"></script>
 </body>

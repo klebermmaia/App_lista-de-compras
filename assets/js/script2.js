@@ -1,7 +1,7 @@
 /* 
-########################__Erros__########################
-
-
+#########################################################
+Usar Icons do ionic.io ao invez de svg 
+função limpar tudo.
 #########################################################
 */
 var trava = true;
@@ -16,13 +16,13 @@ class Produtos {
     if (trava) {
       const produto = this.lerDados();
       if (this.validaCampos(produto)) {
-        this.adicionar(produto);
-        this.listaTabela();
-
+        this.addItemArrItens(produto);
+        this.escrevaTabela();
+        this.setLocalStorage();
         //preenchimento dos input
-        document.getElementById("item").value = "";
-        document.getElementById("valor").value = 1;
-        document.getElementById("quantidade").value = 1;
+        document.getElementById("item").value = '';
+        document.getElementById("valor").value = '';
+        document.getElementById("quantidade").value = '';
       }
     } else {
       console.log("botão Adicionar TRAVADO".toUpperCase());
@@ -54,7 +54,7 @@ class Produtos {
     }
     return true;
   }
-  adicionar(produto) {
+  addItemArrItens(produto) {
     // Aqui add a array
     this.arrItens.push(produto);
     totalCompra = this.somar();
@@ -67,7 +67,7 @@ class Produtos {
       this.arrItens[i].id = i;
     }
   }
-  listaTabela() {
+  escrevaTabela(backupLista) {
     // Adicionar ao html os itens
     const tbody = document.getElementById("tbody");
     tbody.innerHTML = "";
@@ -81,34 +81,62 @@ class Produtos {
     let cell_total = footer.insertCell();
     cell_total.classList.add("td-total");
     let cell_valor_total = footer.insertCell();
-    cell_valor_total.setAttribute("id", "valor_total");
-
-    for (let i = 0; i < this.arrItens.length; i++) {
+    cell_valor_total.classList.add('valor-total');
+    let arrayLength = 0
+    if (this.arrItens.length === 0) {
+      arrayLength = backupLista.length
+    } else {
+      arrayLength  = this.arrItens.length
+    }
+    for (let i = 0; i < arrayLength; i++) {
       let tr = tbody.insertRow();
       tr.setAttribute("id", i);
       tr.classList.add('linha-item')
       let cell_nome = tr.insertCell();
       let cell_valor = tr.insertCell();
       let cell_total_item = tr.insertCell();
-      cell_total_item.setAttribute("id", "total_item_" + i);
+      // cell_total_item.setAttribute("id", "total_item_" + i);
+      if (this.arrItens.length === 0) {
+        var nome = backupLista[i].nome
+        var quantidade = backupLista[i].quantidade
+        var valor = backupLista[i].valor.toFixed(2)
+        var total_item = backupLista[i].total_item.toFixed(2)
+      } else {
+        var nome = this.arrItens[i].nome
+        var quantidade = this.arrItens[i].quantidade
+        var valor = this.arrItens[i].valor.toFixed(2)
+        var total_item = this.arrItens[i].total_item.toFixed(2)
+      }
 
-      cell_nome.innerHTML =
-        `
+
+      cell_nome.innerHTML =`
         <div>
-          <p id="nome_` + i + `" class="font-itens">${this.arrItens[i].nome}</p>
-            <span id="quantidade_` + i +`">
-              <span>x</span>${this.arrItens[i].quantidade}
+          <p class="font-itens">${nome}</p>
+            <span>
+              <span>x</span>${quantidade}
             </span>
         </div>
         `;
       cell_nome.classList.add("cell_nome_item");
-      cell_valor.setAttribute("id", "valor_" + i);
-      cell_valor.innerHTML = `R$ ` + `${this.arrItens[i].valor.toFixed(2)}`;
-      cell_total_item.innerHTML =
-        `R$ ` + `${this.arrItens[i].total_item.toFixed(2)}`;
-      cell_total.innerText = "Total";
+      // cell_valor.setAttribute("id", "valor_" + i);
+      cell_valor.innerHTML = `R$ ` + `${valor.replace('.', ',')}`;
+      cell_total_item.innerHTML = `R$ ` + `${total_item.replace('.', ',')}`;
     }
-    cell_valor_total.innerHTML = `R$ ${totalCompra.toFixed(2)}`;
+    cell_total.innerText = "Total:";
+    cell_valor_total.innerHTML = `R$ ${totalCompra.toFixed(2).replace('.', ',')}`;
+  }
+  setLocalStorage() {
+    localStorage.setItem('backupLista', JSON.stringify(this.arrItens))
+  }
+  loadLocalStorage() {
+    const backupLista = JSON.parse(localStorage.getItem('backupLista')) ?? []
+    for (let pos in backupLista){
+      this.arrItens.push(backupLista[pos])
+    }
+    totalCompra = this.somar()
+    this.escrevaTabela(backupLista)
+    this.activeBtnDel()
+    // localStorage.clear()
   }
   activeBtnDel() {
     if (this.arrItens.length > 0) {
@@ -116,7 +144,7 @@ class Produtos {
     } else {
       document.getElementById('btn-delete').classList.add('oculta')
       trava = true
-      document.getElementById("btn-add").classList.toggle('btn-travado')
+      // document.getElementById("btn-add").classList.toggle('btn-travado')
     }
   }
   editar() {
@@ -127,19 +155,20 @@ class Produtos {
     document.querySelector('.cell_del').classList.toggle('oculta')
     if (trava) {
       trava = false;
-      btnAdd.classList.toggle('btn-travado');
+      btnAdd.classList.add('btn-travado');
       btnEditar.classList.add("editar-on"); // ao clicar no btn de editar ativa ele
       lista_itens.forEach((i) => {
         let delete_cell = i.insertCell();
         delete_cell.classList.add("del-row");
 
-        let imgDelete = document.createElement("img");
-        imgDelete.src = "assets/media/delete_forever.svg";
-        imgDelete.classList.add("img-delete");
+        let imgDelete = document.createElement("ion-icon");
+        // imgDelete.src = "assets/media/delete_forever.svg";
+        imgDelete.setAttribute('name', 'remove-outline')
+        imgDelete.classList.add("remove-iten");
         delete_cell.appendChild(imgDelete);
       });
       // Abaixo adiciona um evento de click para cada img de deletar item
-      const cellDeleteImg = document.querySelectorAll(".img-delete");
+      const cellDeleteImg = document.querySelectorAll(".remove-iten");
       for (let i = 0; i < this.arrItens.length; i++) {
         let img = cellDeleteImg.item(i); // .item dessa NodeList retorna um item da lista pelo índice.
         if (img.getAttribute("onclick") == null) {
@@ -152,7 +181,7 @@ class Produtos {
       return;
     }
     trava = true;
-    btnAdd.classList.toggle('btn-travado');
+    btnAdd.classList.remove('btn-travado');
     btnEditar.classList.remove("editar-on");
     let cell_delete = document.querySelectorAll(".del-row");
     cell_delete.forEach((td) => {
@@ -169,6 +198,27 @@ class Produtos {
       }
     }
     this.activeBtnDel();
+    localStorage.setItem('backupLista', JSON.stringify(this.arrItens))
+    let btnAdd = document.getElementById("btn-add")
+    if (btnAdd.classList.contains('btn-travado') && this.arrItens.length === 0) {
+      btnAdd.classList.remove('btn-travado')
+    }
+    if (this.arrItens.length === 0) {
+      document.querySelector('.cell_del').classList.toggle('oculta')
+    }
+  }
+  limparLista() {
+    const tbody = document.getElementById("tbody");
+    const arrItensLength = this.arrItens.length
+    for (let i = 0; i < arrItensLength; i++) {
+        tbody.deleteRow(0);
+        this.arrItens.splice(0, 1);
+    }
+    totalCompra = 0
+    let valor_total = document.querySelector('.valor-total')
+    valor_total.innerHTML = `R$ ${totalCompra.toFixed(2)}`;
+    this.activeBtnDel();
+    localStorage.setItem('backupLista', JSON.stringify(this.arrItens))
   }
   somar() {
     const soma = this.arrItens.reduce((acc, iten) => {
@@ -179,8 +229,14 @@ class Produtos {
   }
   subtrair(id) {
     totalCompra -= this.arrItens[id].total_item;
-    let valor_total = document.getElementById("valor_total");
+    let valor_total = document.querySelector('.valor-total')
     valor_total.innerHTML = `R$ ${totalCompra.toFixed(2)}`;
   }
 }
 const produto = new Produtos();
+
+window.addEventListener('keyup', (e) => e.key === 'Enter' ? produto.add() : '')
+
+window.addEventListener('load', ()=>{
+  setTimeout(produto.loadLocalStorage(), 500)
+})
