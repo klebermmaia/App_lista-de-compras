@@ -44,11 +44,11 @@
               <ion-icon class="img-trash"  name="trash-outline"></ion-icon>
             </th>
           </tr>
-          <tr class="line-del">
+          <!-- <tr class="line-del">
             <td type="button" id="btn-delete" class="delete oculta" onclick="produto.editar()" aria->
               <ion-icon class="img-trash" name="trash-outline"></ion-icon>
             </td>
-          </tr>
+          </tr> -->
         </thead>
         <tbody id="tbody" class="font-itens">
           <!-- <tr class="linha-item">
@@ -91,14 +91,40 @@
       <div class="toggle-menu"><span></span></div>
       <nav class="menu-nav">
         <ul class="font-label">
-          <li class="li-delete">
-            <button class="delete-lista" onclick="produto.limparLista()">
+          <li class="li-delete" onclick="produto.limparLista()">
+            <button class="delete-lista">
               <span class="material-symbols-outlined" onclick="produto.limparLista()">delete_forever</span>
             </button>
             <span>
               Limpar Lista
             </span>
           </li>
+          <li id="btn-delete" class="li-delete" onclick="produto.editar()">
+            <button class="delete-lista">
+              <ion-icon class="img-trash" name="trash-outline"></ion-icon>
+            </button>
+            <span>
+              Excluir itens
+            </span>
+          </li>
+          
+          <li id="btn-delete" class="li-delete">
+            <button class="delete-lista">
+              <ion-icon class="img-trash" name="trash-outline"></ion-icon>
+            </button>
+            <span>
+              Outra coisa
+            </span>
+          </li>
+          <li id="btn-delete" class="li-delete">
+            <button class="delete-lista">
+              <ion-icon class="img-trash" name="trash-outline"></ion-icon>
+            </button>
+            <span>
+              Outra coisa
+            </span>
+          </li>
+
         </ul>
       </nav>
     </div>

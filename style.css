@@ -294,6 +294,16 @@ body{
     color: white;
     transition: all .3s;
   }
+  .menu-nav ul{
+    display: flex;
+    justify-content: space-between;
+    width: 79%;
+    overflow-y: hidden;
+    overflow-x: scroll;
+  }
+  .menu-nav ul li{
+    min-width: 90px;
+  }
   .div-menu.active .toggle-menu{
     background-color: var(--bg-total);
     bottom: 20px;

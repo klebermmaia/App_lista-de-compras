@@ -157,7 +157,7 @@ class Produtos {
     if (trava) {
       trava = false;
       btnAdd.classList.add('btn-travado');
-      btnEditar.classList.add("editar-on"); // ao clicar no btn de editar ativa ele
+      // btnEditar.classList.add("editar-on"); // ao clicar no btn de editar ativa ele
       lista_itens.forEach((i) => {
         let delete_cell = i.insertCell();
         delete_cell.classList.add("del-row");
@@ -183,7 +183,7 @@ class Produtos {
     }
     trava = true;
     btnAdd.classList.remove('btn-travado');
-    btnEditar.classList.remove("editar-on");
+    // btnEditar.classList.remove("editar-on");
     let cell_delete = document.querySelectorAll(".del-row");
     cell_delete.forEach((td) => {
       td.remove(); // remover a classe cell_delete
