@@ -1,7 +1,9 @@
 /* 
 #########################################################
 Usar Icons do ionic.io ao invez de svg 
-função limpar tudo.
+Modificar layout quando clicar para editar.
+ou...
+seria melhor colocar duas funções, uma de deletar e outra só para etidar? isso no menu do app em vez de um unico botão.
 #########################################################
 */
 var trava = true;
@@ -69,19 +71,19 @@ class Produtos {
   }
   escrevaTabela(backupLista) {
     // Adicionar ao html os itens
-    const tbody = document.getElementById("tbody");
-    tbody.innerHTML = "";
-    tbody.classList.add('font-itens')
+    const corpoTabela = document.getElementById("corpo-tabela");
+    corpoTabela.innerHTML = "";
+    corpoTabela.classList.add('font-itens')
     const tfooter = document.getElementById("tfooter");
     tfooter.innerHTML = "";
 
-    let lineTotal = tfooter.insertRow();
-    lineTotal.classList.add("total");
-    lineTotal.classList.add('font-t-tabela')
+    let linhaTotal = tfooter.insertRow();
+    linhaTotal.classList.add("total");
+    linhaTotal.classList.add('font-t-tabela')
 
-    let cell_total = lineTotal.insertCell();
+    let cell_total = linhaTotal.insertCell();
     cell_total.classList.add("td-total");
-    let cell_valor_total = lineTotal.insertCell();
+    let cell_valor_total = linhaTotal.insertCell();
     cell_valor_total.classList.add('valor-total');
     let arrayLength = 0
     if (this.arrItens.length === 0) {
@@ -90,13 +92,19 @@ class Produtos {
       arrayLength  = this.arrItens.length
     }
     for (let i = 0; i < arrayLength; i++) {
-      let tr = tbody.insertRow();
-      tr.setAttribute("id", i);
-      tr.classList.add('linha-item')
-      let cell_nome = tr.insertCell();
-      let cell_valor = tr.insertCell();
-      let cell_total_item = tr.insertCell();
-      // cell_total_item.setAttribute("id", "total_item_" + i);
+      let row = corpoTabela.insertRow();
+      // let row2 = corpoTabela.insertRow();
+      // let rowEdit = document.createElement('div');
+      // console.log(row, rowEdit)
+      row.setAttribute("id", i);
+      row.classList.add('linha-item');
+      let cell_nome = row.insertCell(); // Criando celulas: nome, valor e total item.
+      let cell_valor = row.insertCell();
+      let cell_total_item = row.insertCell();
+      
+      // row2.innerText = 'dsd'
+      // row.insertAdjacentHTML('afterend', rowEdit)
+
       if (this.arrItens.length === 0) {
         var nome = backupLista[i].nome
         var quantidade = backupLista[i].quantidade
@@ -110,18 +118,11 @@ class Produtos {
       }
 
 
-      cell_nome.innerHTML =`
-        <div>
-          <p class="font-itens">${nome}</p>
-            <span>
-              <span>x</span>${quantidade}
-            </span>
-        </div>
-        `;
+      cell_nome.innerHTML =`<div><p class="font-itens">${nome}</p><span><span>x</span>${quantidade}</span></div>`;
       cell_nome.classList.add("cell_nome_item");
-      // cell_valor.setAttribute("id", "valor_" + i);
       cell_valor.innerHTML = `R$ ` + `${valor.replace('.', ',')}`;
       cell_total_item.innerHTML = `R$ ` + `${total_item.replace('.', ',')}`;
+
     }
     cell_total.innerText = "Total:";
     cell_valor_total.innerHTML = `R$ ${totalCompra.toFixed(2).replace('.', ',')}`;
@@ -149,53 +150,55 @@ class Produtos {
     }
   }
   editar() {
-    //-------Aqui vai DELETAR um ITEM
     const lista_itens = document.querySelectorAll("tbody tr");
     const btnEditar = document.getElementById("btn-delete");
     const btnAdd = document.getElementById("btn-add");
-    document.querySelector('.cell_del').classList.toggle('oculta')
+    // document.querySelector('.cell_del').classList.toggle('oculta')
     if (trava) {
       trava = false;
       btnAdd.classList.add('btn-travado');
       // btnEditar.classList.add("editar-on"); // ao clicar no btn de editar ativa ele
       lista_itens.forEach((i) => {
         let delete_cell = i.insertCell();
-        delete_cell.classList.add("del-row");
+        let edit_cell = i.insertCell();
+        delete_cell.classList.add("del-edit-ico");
+        edit_cell.classList.add("del-edit-ico");
 
         let imgDelete = document.createElement("ion-icon");
-        // imgDelete.src = "assets/media/delete_forever.svg";
-        imgDelete.setAttribute('name', 'close-outline')
+        imgDelete.setAttribute('name', 'close-circle-outline')
         imgDelete.classList.add("remove-iten");
         delete_cell.appendChild(imgDelete);
+
+        let imgEdit = document.createElement("ion-icon");
+        imgEdit.setAttribute('name', 'create-outline')
+        imgEdit.classList.add("remove-iten");
+        edit_cell.appendChild(imgEdit);
       });
       // Abaixo adiciona um evento de click para cada img de deletar item
       const cellDeleteImg = document.querySelectorAll(".remove-iten");
       for (let i = 0; i < this.arrItens.length; i++) {
         let img = cellDeleteImg.item(i); // .item dessa NodeList retorna um item da lista pelo índice.
         if (img.getAttribute("onclick") == null) {
-          img.setAttribute(
-            "onclick",
-            "produto.deleteItem(" + this.arrItens[i].id + ")",
-          );
+          img.setAttribute("onclick","produto.deleteItem(" + this.arrItens[i].id + ")",);
         }
       }
       return;
     }
+    // Essa parte é apenas para remover 
     trava = true;
     btnAdd.classList.remove('btn-travado');
-    // btnEditar.classList.remove("editar-on");
-    let cell_delete = document.querySelectorAll(".del-row");
+    let cell_delete = document.querySelectorAll(".del-edit-ico");
     cell_delete.forEach((td) => {
       td.remove(); // remover a classe cell_delete
     });
   }
   deleteItem(id) {
-    const tbody = document.getElementById("tbody");
+    const corpoTabela = document.getElementById("corpo-tabela");
     for (let i = 0; i < this.arrItens.length; i++) {
       if (this.arrItens[i].id == id) {
         this.subtrair(i);
         this.arrItens.splice(i, 1);
-        tbody.deleteRow(i);
+        corpoTabela.deleteRow(i);
       }
     }
     this.activeBtnDel();
@@ -205,14 +208,14 @@ class Produtos {
       btnAdd.classList.remove('btn-travado')
     }
     if (this.arrItens.length === 0) {
-      document.querySelector('.cell_del').classList.toggle('oculta')
+      // document.querySelector('.cell_del').classList.toggle('oculta')
     }
   }
   limparLista() {
-    const tbody = document.getElementById("tbody");
+    const corpoTabela = document.getElementById("corpo-tabela");
     const arrItensLength = this.arrItens.length
     for (let i = 0; i < arrItensLength; i++) {
-        tbody.deleteRow(0);
+      corpoTabela.deleteRow(0);
         this.arrItens.splice(0, 1);
     }
     totalCompra = 0

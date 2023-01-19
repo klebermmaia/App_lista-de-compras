@@ -99,9 +99,9 @@ body{
     background-color: red;
   }
   table{
+    width: 90%;
     border-collapse: collapse;
     position: relative;
-    right: 16px;
     margin: 0 auto;
     background-color: #ffffff;
     border-radius: 10px 10px 0px 10px;
@@ -110,6 +110,9 @@ body{
   th, td{
     border-bottom: 1px solid #000000b3;
     padding: 6px;
+  }
+  td{
+    min-width: 51px;
   }
   th:nth-child(2),
   .linha-item td:nth-child(2){
@@ -231,10 +234,10 @@ body{
     color: darkred;
     width: 25px;
   }
-  .del-row,
+  .del-edit-ico,
   .cell_del{
     position: relative;
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content: center;
     padding: 6px 0;
