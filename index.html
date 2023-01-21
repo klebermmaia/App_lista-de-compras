@@ -32,7 +32,6 @@
           </button>
         </form>
     </div>
-    <!-- /////// -->
     <div class="lista-itens">
       <table>
         <thead>
@@ -40,46 +39,11 @@
             <th>item</th>
             <th>valor</th>
             <th>V. Parcial</th>
-            <!-- <th class="cell_del oculta">
-              <ion-icon class="img-trash"  name="trash-outline"></ion-icon>
-            </th> -->
           </tr>
-          <!-- <tr class="line-del">
-            <td type="button" id="btn-delete" class="delete oculta" onclick="produto.editar()" aria->
-              <ion-icon class="img-trash" name="trash-outline"></ion-icon>
-            </td>
-          </tr> -->
         </thead>
         <tbody id="corpo-tabela" class="font-itens">
-          <!-- <tr class="linha-item">
-            <td class="cell_nome_item">
-              <div>
-                <p id="nome_0" class="font-itens">bolacha cream crack</p>
-                <span id="quantidade_0">
-                  <span>x</span>2
-                </span>
-              </div>
-            </td>
-            <td id="valor_0">R$ 999,99</td>
-            <td id="total_item_0">R$ 999,99</td>
-          </tr>
-          <tr class="linha-item">
-            <td class="cell_nome_item">
-              <div>
-                <p id="nome_0" class="font-itens">bolacha cream crack</p>
-                <span id="quantidade_0">
-                  <span>x</span>2
-                </span>
-              </div>
-            </td>
-            <td id="valor_0">R$ 999,99</td>
-            <td id="total_item_0">R$ 999,99</td>
-          </tr> -->
         </tbody>
         <tfoot id="tfooter">
-          <!-- <tr>
-            <td class="" onclick="produto.limparLista()">Limpar tudo</td>
-          </tr> -->
           <tr class="font-t-tabela total">
             <td>Total: </td>
             <td>R$ 0,00</td>
@@ -91,47 +55,43 @@
       <div class="toggle-menu"><span></span></div>
       <nav class="menu-nav">
         <ul class="font-label">
-          <li class="li-delete" onclick="produto.limparLista()">
-            <button class="delete-lista">
-              <span class="material-symbols-outlined" onclick="produto.limparLista()">delete_forever</span>
-            </button>
-            <span>
-              Limpar Lista
-            </span>
-          </li>
           <li id="btn-delete" class="li-delete" onclick="produto.editar()">
             <button class="delete-lista">
-              <ion-icon class="img-trash" name="trash-outline"></ion-icon>
+              <span class="material-symbols-outlined">edit_note</span>
+            </button>
+            <span>
+              Editar
+            </span>
+          </li>
+          <li id="btn-delete" class="li-delete" onclick="produto.delete()">
+            <button class="delete-lista">
+              <span class="material-symbols-outlined">delete</span>
             </button>
             <span>
               Excluir itens
             </span>
           </li>
-
-          <li id="btn-delete" class="li-delete">
+          <li class="li-delete" onclick="produto.activeClearList()">
             <button class="delete-lista">
-              <ion-icon class="img-trash" name="trash-outline"></ion-icon>
+              <span class="material-symbols-outlined" onclick="produto.activeClearList()">delete_forever</span>
             </button>
             <span>
-              Outra coisa
+              Limpar Lista
             </span>
           </li>
-          <li id="btn-delete" class="li-delete">
-            <button class="delete-lista">
-              <ion-icon class="img-trash" name="trash-outline"></ion-icon>
-            </button>
-            <span>
-              Outra coisa
-            </span>
-          </li>
-
         </ul>
       </nav>
     </div>
+  </section> 
+  <section class="outros">
+    <div class="clear-list">
+      <div>
+        <p>Deseja limpar a lista?</p>
+        <button id="confirm-clear-list-btn" onclick="produto.clearList(true)">Confirma</button>
+        <button id="cancel-clear-list-btn" onclick="produto.clearList(false)">Cancelar</button>
+      </div>
+    </div>
   </section>
-
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <!-- <script src="assets/js/script.js"></script> -->
   <script src="assets/js/script2.js"></script>
 </body>

@@ -6,7 +6,8 @@ ou...
 seria melhor colocar duas funções, uma de deletar e outra só para etidar? isso no menu do app em vez de um unico botão.
 #########################################################
 */
-var trava = true;
+let trava = true;
+let statusEditor = false;
 var totalCompra = 0;
 class Produtos {
   constructor() {
@@ -27,7 +28,7 @@ class Produtos {
         document.getElementById("quantidade").value = '';
       }
     } else {
-      console.log("botão Adicionar TRAVADO".toUpperCase());
+      alert("botão Adicionar TRAVADO".toUpperCase())
     }
   }
   lerDados() {
@@ -149,7 +150,44 @@ class Produtos {
       // document.getElementById("btn-add").classList.toggle('btn-travado')
     }
   }
-  editar() {
+  delete() {
+    const lista_itens = document.querySelectorAll("tbody tr");
+    const btnEditar = document.getElementById("btn-delete");
+    const btnAdd = document.getElementById("btn-add");
+    // document.querySelector('.cell_del').classList.toggle('oculta')
+    if (trava) {
+      trava = false;
+      statusEditor = true;
+      btnAdd.classList.add('btn-travado');
+      // btnEditar.classList.add("editar-on"); // ao clicar no btn de editar ativa ele
+      lista_itens.forEach((i) => {
+        let delete_cell = i.insertCell();
+        delete_cell.classList.add("del-edit-ico");
+
+        let imgDelete = document.createElement("span");
+        imgDelete.innerText = "close"
+        imgDelete.className = "material-symbols-outlined remove-iten";
+        delete_cell.appendChild(imgDelete);
+      });
+      // Abaixo adiciona um evento de click para cada img de deletar item
+      const cellDeleteImg = document.querySelectorAll(".remove-iten");
+      for (let i = 0; i < this.arrItens.length; i++) {
+        let img = cellDeleteImg.item(i); // .item dessa NodeList retorna um item da lista pelo índice.
+        if (img.getAttribute("onclick") == null) {
+          img.setAttribute("onclick","produto.deleteItem(" + this.arrItens[i].id + ")",);
+        }
+      }
+      return;
+    }
+    // Essa parte é apenas para remover 
+    trava = true;
+    btnAdd.classList.remove('btn-travado');
+    let cell_delete = document.querySelectorAll(".del-edit-ico");
+    cell_delete.forEach((td) => {
+      td.remove(); // remover a classe cell_delete
+    });
+  }
+  editar(){
     const lista_itens = document.querySelectorAll("tbody tr");
     const btnEditar = document.getElementById("btn-delete");
     const btnAdd = document.getElementById("btn-add");
@@ -159,19 +197,12 @@ class Produtos {
       btnAdd.classList.add('btn-travado');
       // btnEditar.classList.add("editar-on"); // ao clicar no btn de editar ativa ele
       lista_itens.forEach((i) => {
-        let delete_cell = i.insertCell();
         let edit_cell = i.insertCell();
-        delete_cell.classList.add("del-edit-ico");
         edit_cell.classList.add("del-edit-ico");
 
-        let imgDelete = document.createElement("ion-icon");
-        imgDelete.setAttribute('name', 'close-circle-outline')
-        imgDelete.classList.add("remove-iten");
-        delete_cell.appendChild(imgDelete);
-
-        let imgEdit = document.createElement("ion-icon");
-        imgEdit.setAttribute('name', 'create-outline')
-        imgEdit.classList.add("remove-iten");
+        let imgEdit = document.createElement("span");
+        imgEdit.innerText = "edit"
+        imgEdit.className = "material-symbols-outlined remove-iten";
         edit_cell.appendChild(imgEdit);
       });
       // Abaixo adiciona um evento de click para cada img de deletar item
@@ -207,11 +238,16 @@ class Produtos {
     if (btnAdd.classList.contains('btn-travado') && this.arrItens.length === 0) {
       btnAdd.classList.remove('btn-travado')
     }
-    if (this.arrItens.length === 0) {
-      // document.querySelector('.cell_del').classList.toggle('oculta')
-    }
   }
-  limparLista() {
+  activeClearList() {
+    let clearListBox = document.querySelector('.outros');
+    clearListBox.style.display = 'flex';
+  }
+  clearList(value){
+    let clearListBox = document.querySelector('.outros');
+    if(!value){
+      clearListBox.style.display = 'none';
+    } else{
     const corpoTabela = document.getElementById("corpo-tabela");
     const arrItensLength = this.arrItens.length
     for (let i = 0; i < arrItensLength; i++) {
@@ -223,6 +259,8 @@ class Produtos {
     valor_total.innerHTML = `R$ ${totalCompra.toFixed(2)}`;
     this.activeBtnDel();
     localStorage.setItem('backupLista', JSON.stringify(this.arrItens))
+    clearListBox.style.display = 'none';
+    }
   }
   somar() {
     const soma = this.arrItens.reduce((acc, iten) => {
