@@ -1,10 +1,9 @@
 /* 
-#########################################################
-Usar Icons do ionic.io ao invez de svg 
-Modificar layout quando clicar para editar.
-ou...
-seria melhor colocar duas funções, uma de deletar e outra só para etidar? isso no menu do app em vez de um unico botão.
-#########################################################
+##################################################################################################################
+Trocar algumas 'class' por 'data' e organizar o CSS.
+
+Fazer um Layout diferente para o modo editar.
+##################################################################################################################
 */
 let trava = true;
 let statusEditor = false;
@@ -102,7 +101,9 @@ class Produtos {
       let cell_nome = row.insertCell(); // Criando celulas: nome, valor e total item.
       let cell_valor = row.insertCell();
       let cell_total_item = row.insertCell();
-      
+      cell_nome.classList.add('col-name')
+      cell_valor.classList.add('col-valor')
+      cell_total_item.classList.add('col-valor-parcial')
       // row2.innerText = 'dsd'
       // row.insertAdjacentHTML('afterend', rowEdit)
 
@@ -151,10 +152,14 @@ class Produtos {
     }
   }
   delete() {
+    let thead = document.querySelector('thead');
+    let tbody = document.querySelector('tbody');
+    [tbody,thead].forEach(i=>i.classList.toggle('active-edit-iten'));
+
     const lista_itens = document.querySelectorAll("tbody tr");
     const btnEditar = document.getElementById("btn-delete");
     const btnAdd = document.getElementById("btn-add");
-    // document.querySelector('.cell_del').classList.toggle('oculta')
+
     if (trava) {
       trava = false;
       statusEditor = true;
