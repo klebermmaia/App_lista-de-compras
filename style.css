@@ -139,6 +139,7 @@ body{
   th{
     min-width: 70px;
     height: 45px;
+    line-height: 75%;
   }
   tbody td{
     min-width: 51px;
@@ -218,6 +219,21 @@ body{
   tbody.active-edit-iten tr .col-valor-parcial,
   thead.active-edit-iten tr .col-valor-parcial{
     border-left: 1px solid #00000080;
+  }
+  .col-4 {
+    background-color: var(--btn-add);
+  }
+  th{
+    position: relative;
+  }
+  thead tr th span{
+    font-size: .7rem;
+    color: #000000d7;
+    position: absolute;
+    left: 36%;
+  }
+  .col-edit-or-delete{
+    /* display: none; */
   }
   #corpo-tabela.activeEdition .col-valor-parcial{
     border-left: 1px solid #00000080;

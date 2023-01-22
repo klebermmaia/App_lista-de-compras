@@ -93,9 +93,6 @@ class Produtos {
     }
     for (let i = 0; i < arrayLength; i++) {
       let row = corpoTabela.insertRow();
-      // let row2 = corpoTabela.insertRow();
-      // let rowEdit = document.createElement('div');
-      // console.log(row, rowEdit)
       row.setAttribute("id", i);
       row.classList.add('linha-item');
       let cell_nome = row.insertCell(); // Criando celulas: nome, valor e total item.
@@ -104,8 +101,6 @@ class Produtos {
       cell_nome.classList.add('col-name')
       cell_valor.classList.add('col-valor')
       cell_total_item.classList.add('col-valor-parcial')
-      // row2.innerText = 'dsd'
-      // row.insertAdjacentHTML('afterend', rowEdit)
 
       if (this.arrItens.length === 0) {
         var nome = backupLista[i].nome
@@ -168,6 +163,7 @@ class Produtos {
       lista_itens.forEach((i) => {
         let delete_cell = i.insertCell();
         delete_cell.classList.add("del-edit-ico");
+        // delete_cell.classList.add('col-4')
 
         let imgDelete = document.createElement("span");
         imgDelete.innerText = "close"
@@ -193,6 +189,16 @@ class Produtos {
     });
   }
   editar(){
+    let thead = document.querySelector('thead');
+    let tbody = document.querySelector('tbody');
+    let colEditOrDelete = document.querySelector('.col-edit-or-delete');
+    let colEoDIco = document.querySelector('.col-edit-or-delete span');
+    [tbody,thead].forEach(i=>i.classList.toggle('active-edit-iten'));
+
+    colEditOrDelete.classList.toggle('display-none');
+    let aux = colEditOrDelete.classList.contains('display-none') ? '' : 'edit_note';
+    colEoDIco.innerText = aux
+
     const lista_itens = document.querySelectorAll("tbody tr");
     const btnEditar = document.getElementById("btn-delete");
     const btnAdd = document.getElementById("btn-add");
