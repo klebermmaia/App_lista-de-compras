@@ -45,7 +45,7 @@ class Produtos {
       msg += "- Informe o Nome do produto \n";
     }
     if (produto.valor == "") {
-      msg += "- Informe o Valor do produto \n";
+      msg += "- Informe o Valor do produto \n"; 
     }
     if (produto.quantidade == "") {
       msg += "- Informe a Quantidade do produto \n";
